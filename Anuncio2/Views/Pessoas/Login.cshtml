@@ -1,0 +1,35 @@
+﻿@model Dominio.Pessoa
+
+@{ ViewBag.Title = "Login"; }
+<div class="container cadastro">
+    <section id="loginForm">
+        @using (Html.BeginForm("Login", "Pessoas", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h2 class="form-signin-heading">Acesse a sua Conta</h2>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "sr-only" })
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Senha, new { @class = "sr-only" })
+                @Html.PasswordFor(m => m.Senha, new { @class = "form-control", @placeholder = "Senha" })
+                @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar" />
+            </div>
+            <br />
+            <label class="entrarCadastro">Não tem uma conta? @Html.ActionLink("Cadastre-se", "Create", "Pessoas") </label>
+        }
+
+    </section>
+    </div>
+
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
